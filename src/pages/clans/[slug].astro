@@ -4,6 +4,7 @@ import CharacterCard from "../../components/clans/CharacterCard.astro";
 import { clans } from "../../data/clans";
 import { getCharactersByClan } from "../../data/characters";
 import type { Clan } from "../../data/clans";
+import { url } from "../../lib/utils";
 
 export function getStaticPaths() {
   return clans.map((clan) => ({
@@ -34,9 +35,9 @@ const headerGradient = headerColors[clan.color] ?? "from-forest-600 to-forest-80
   <div class={`bg-gradient-to-br ${headerGradient} text-white`}>
     <div class="max-w-4xl mx-auto px-4 py-12">
       <nav class="text-sm mb-6 opacity-80">
-        <a href="/" class="hover:underline">Home</a>
+        <a href={url("/")} class="hover:underline">Home</a>
         <span class="mx-2">/</span>
-        <a href="/clans" class="hover:underline">Clans</a>
+        <a href={url("/clans")} class="hover:underline">Clans</a>
         <span class="mx-2">/</span>
         <span>{clan.name}</span>
       </nav>
@@ -89,7 +90,7 @@ const headerGradient = headerColors[clan.color] ?? "from-forest-600 to-forest-80
       <div class="flex flex-wrap gap-3">
         {otherClans.map((c) => (
           <a
-            href={`/clans/${c.slug}`}
+            href={url(`/clans/${c.slug}`)}
             class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-sm font-medium text-forest-700"
           >
             <span>{c.symbol}</span>

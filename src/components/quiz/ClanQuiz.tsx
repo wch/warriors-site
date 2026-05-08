@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { quizQuestions, quizResults } from "../../data/quiz";
 import { clans } from "../../data/clans";
-import { cn } from "@/lib/utils";
+import { cn, url } from "@/lib/utils";
 
 export default function ClanQuiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -78,7 +78,7 @@ export default function ClanQuiz() {
               </button>
               {clan && (
                 <a
-                  href={`/clans/${clan.slug}`}
+                  href={url(`/clans/${clan.slug}`)}
                   className="px-6 py-2.5 border-2 border-forest-300 text-forest-700 font-medium rounded-lg hover:bg-forest-50 transition-colors text-sm"
                 >
                   Learn About {clan.name}

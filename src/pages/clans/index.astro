@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ClanCard from "../../components/clans/ClanCard.astro";
 import { clans } from "../../data/clans";
+import { url } from "../../lib/utils";
 ---
 
 <BaseLayout title="The Five Clans" description="Meet the five Clans of warrior cats — ThunderClan, ShadowClan, RiverClan, WindClan, and SkyClan.">
@@ -24,7 +25,7 @@ import { clans } from "../../data/clans";
 
     <div class="mt-12 text-center">
       <a
-        href="/quiz"
+        href={url("/quiz")}
         class="inline-flex items-center justify-center px-8 py-3 bg-gold-500 text-forest-950 font-bold rounded-lg hover:bg-gold-400 transition-colors text-sm"
       >
         Take the Quiz — Find Your Clan!

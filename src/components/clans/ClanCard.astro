@@ -1,5 +1,6 @@
 ---
 import type { Clan } from "../../data/clans";
+import { url } from "../../lib/utils";
 
 interface Props {
   clan: Clan;
@@ -18,7 +19,7 @@ const colors = clanColors[clan.color] ?? clanColors.amber;
 ---
 
 <a
-  href={`/clans/${clan.slug}`}
+  href={url(`/clans/${clan.slug}`)}
   class:list={[
     "group block rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all hover:-translate-y-1 bg-white border-t-4",
     colors.border,

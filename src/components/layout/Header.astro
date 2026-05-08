@@ -1,9 +1,11 @@
 ---
+import { url } from "../../lib/utils";
+
 const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/books", label: "Books" },
-  { href: "/clans", label: "Clans" },
-  { href: "/quiz", label: "Find Your Clan" },
+  { href: url("/"), label: "Home" },
+  { href: url("/books"), label: "Books" },
+  { href: url("/clans"), label: "Clans" },
+  { href: url("/quiz"), label: "Find Your Clan" },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -11,7 +13,7 @@ const currentPath = Astro.url.pathname;
 
 <header class="bg-forest-900 text-forest-50 sticky top-0 z-50">
   <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-    <a href="/" class="text-2xl font-heading font-bold tracking-wide text-gold-400 hover:text-gold-500 transition-colors">
+    <a href={url("/")} class="text-2xl font-heading font-bold tracking-wide text-gold-400 hover:text-gold-500 transition-colors">
       Warriors
     </a>
 

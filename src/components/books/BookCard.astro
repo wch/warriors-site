@@ -1,6 +1,7 @@
 ---
 import type { Book } from "../../data/books";
 import { getCoverUrl } from "../../data/books";
+import { url } from "../../lib/utils";
 
 interface Props {
   book: Book;
@@ -21,7 +22,7 @@ const gradient = arcGradients[book.seriesArc] ?? "from-forest-600 to-forest-800"
 const coverUrl = getCoverUrl(book.isbn, "M");
 ---
 
-<a href={`/books/${book.slug}`} class="group block rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all hover:-translate-y-1 bg-white">
+<a href={url(`/books/${book.slug}`)} class="group block rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all hover:-translate-y-1 bg-white">
   <div class={`bg-gradient-to-br ${gradient} relative overflow-hidden`}>
     <div class="flex items-center justify-center p-4">
       <img

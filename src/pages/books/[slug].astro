@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { books, seriesArcs, getBooksByArc, getArcForBook, getCoverUrl } from "../../data/books";
 import type { Book } from "../../data/books";
+import { url } from "../../lib/utils";
 
 export function getStaticPaths() {
   return books.map((book) => ({
@@ -38,11 +39,11 @@ const coverUrl = getCoverUrl(book.isbn, "L");
   <div class={`bg-gradient-to-br ${gradient} text-white`}>
     <div class="max-w-4xl mx-auto px-4 py-12">
       <nav class="text-sm mb-6 opacity-80">
-        <a href="/" class="hover:underline">Home</a>
+        <a href={url("/")} class="hover:underline">Home</a>
         <span class="mx-2">/</span>
-        <a href="/books" class="hover:underline">Books</a>
+        <a href={url("/books")} class="hover:underline">Books</a>
         <span class="mx-2">/</span>
-        <a href={`/books#${arc.id}`} class="hover:underline">{arc.name}</a>
+        <a href={url(`/books#${arc.id}`)} class="hover:underline">{arc.name}</a>
         <span class="mx-2">/</span>
         <span>{book.title}</span>
       </nav>
@@ -88,14 +89,14 @@ const coverUrl = getCoverUrl(book.isbn, "L");
 
     <nav class="flex items-center justify-between border-t border-b border-earth-200 py-4 mb-10">
       {prevBook ? (
-        <a href={`/books/${prevBook.slug}`} class="text-sm text-forest-700 hover:text-forest-900 transition-colors">
+        <a href={url(`/books/${prevBook.slug}`)} class="text-sm text-forest-700 hover:text-forest-900 transition-colors">
           &larr; {prevBook.title}
         </a>
       ) : (
         <span />
       )}
       {nextBook ? (
-        <a href={`/books/${nextBook.slug}`} class="text-sm text-forest-700 hover:text-forest-900 transition-colors">
+        <a href={url(`/books/${nextBook.slug}`)} class="text-sm text-forest-700 hover:text-forest-900 transition-colors">
           {nextBook.title} &rarr;
         </a>
       ) : (
@@ -111,7 +112,7 @@ const coverUrl = getCoverUrl(book.isbn, "L");
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {otherBooks.map((b) => (
             <a
-              href={`/books/${b.slug}`}
+              href={url(`/books/${b.slug}`)}
               class="flex items-center gap-3 bg-white rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow"
             >
               <img

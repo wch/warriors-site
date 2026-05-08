@@ -1,5 +1,6 @@
 ---
 import { seriesArcs } from "../../data/books";
+import { url } from "../../lib/utils";
 
 const arcColors = [
   "from-amber-600 to-amber-800",
@@ -22,7 +23,7 @@ const arcColors = [
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {seriesArcs.map((arc, i) => (
         <a
-          href={`/books#${arc.id}`}
+          href={url(`/books#${arc.id}`)}
           class="group block rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
         >
           <div class={`bg-gradient-to-br ${arcColors[i]} p-6 text-white`}>
