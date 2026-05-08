@@ -19,7 +19,7 @@ export const clans: Clan[] = [
     territory:
       "Dense deciduous forest with thick undergrowth, near a ravine camp sheltered by rocks and brambles.",
     strengths: ["Stalking through undergrowth", "Courage in battle", "Loyalty and compassion"],
-    color: "amber",
+    color: "thunder",
     symbol: "⚡",
   },
   {
@@ -31,7 +31,7 @@ export const clans: Clan[] = [
     territory:
       "Dark pine forest with marshy ground, bordered by a Thunderpath. Their camp is hidden in a hollow surrounded by brambles.",
     strengths: ["Night hunting", "Ambush tactics", "Fierce independence"],
-    color: "slate",
+    color: "shadow",
     symbol: "🌑",
   },
   {
@@ -43,7 +43,7 @@ export const clans: Clan[] = [
     territory:
       "Open streams and rivers with lush, reedy banks. Their camp is on a well-drained island surrounded by water.",
     strengths: ["Swimming and fishing", "Sleek agility", "Resourcefulness"],
-    color: "blue",
+    color: "river",
     symbol: "🌊",
   },
   {
@@ -55,7 +55,7 @@ export const clans: Clan[] = [
     territory:
       "Open moorland swept by wind, with rolling hills and rabbit warrens. Their camp is a shallow scoop in the ground sheltered by gorse.",
     strengths: ["Speed and endurance", "Keen eyesight", "Closeness to StarClan"],
-    color: "stone",
+    color: "wind",
     symbol: "💨",
   },
   {

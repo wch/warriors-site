@@ -21,63 +21,39 @@ const { clan } = Astro.props;
 const clanCharacters = getCharactersByClan(clan.slug);
 const otherClans = clans.filter((c) => c.slug !== clan.slug);
 
-const headerColors: Record<string, string> = {
-  amber: "from-amber-600 to-amber-800",
-  slate: "from-slate-600 to-slate-800",
-  blue: "from-blue-600 to-blue-800",
-  stone: "from-stone-500 to-stone-700",
-  sky: "from-sky-500 to-sky-700",
+const clanHeroGradients: Record<string, string> = {
+  thunder: "linear-gradient(135deg, oklch(0.45 0.16 60), oklch(0.25 0.13 50))",
+  shadow: "linear-gradient(135deg, oklch(0.45 0.04 250), oklch(0.20 0.04 250))",
+  river: "linear-gradient(135deg, oklch(0.40 0.18 250), oklch(0.20 0.14 250))",
+  wind: "linear-gradient(135deg, oklch(0.55 0.02 80), oklch(0.30 0.03 80))",
+  sky: "linear-gradient(135deg, oklch(0.55 0.16 230), oklch(0.25 0.14 230))",
 };
-const headerGradient = headerColors[clan.color] ?? "from-forest-600 to-forest-800";
+const heroGradient = clanHeroGradients[clan.color] ?? clanHeroGradients.thunder;
 ---
 
 <BaseLayout title={clan.name} description={`Learn about ${clan.name} — ${clan.motto}. Meet the cats, explore the territory, and discover what makes this Clan unique.`}>
-  <div class={`bg-gradient-to-br ${headerGradient} text-white`}>
-    <div class="max-w-4xl mx-auto px-4 py-12">
-      <nav class="text-sm mb-6 opacity-80">
-        <a href={url("/")} class="hover:underline">Home</a>
-        <span class="mx-2">/</span>
-        <a href={url("/clans")} class="hover:underline">Clans</a>
-        <span class="mx-2">/</span>
-        <span>{clan.name}</span>
-      </nav>
-      <div class="flex items-center gap-4">
-        <span class="text-5xl">{clan.symbol}</span>
-        <div>
-          <h1 class="text-4xl md:text-5xl font-heading font-bold">{clan.name}</h1>
-          <p class="text-lg italic opacity-90 mt-1">"{clan.motto}"</p>
-        </div>
-      </div>
-    </div>
+  <div class="py-16 px-4 text-white text-center overflow-hidden relative" style={`background: ${heroGradient}`}>
+    <span class="text-[64px] leading-none block mb-3">{clan.symbol}</span>
+    <h1 class="text-[56px] font-heading font-bold leading-none tracking-tight">{clan.name}</h1>
+    <p class="font-heading italic text-lg opacity-90 mt-3">"{clan.motto}"</p>
   </div>
 
-  <div class="max-w-4xl mx-auto px-4 py-10">
-    <section class="mb-10">
-      <h2 class="text-2xl font-heading font-bold text-forest-900 mb-3">About</h2>
-      <p class="text-earth-700 leading-relaxed text-lg">{clan.description}</p>
-    </section>
-
-    <section class="mb-10">
-      <h2 class="text-2xl font-heading font-bold text-forest-900 mb-3">Territory</h2>
-      <p class="text-earth-700 leading-relaxed">{clan.territory}</p>
-    </section>
-
-    <section class="mb-10">
-      <h2 class="text-2xl font-heading font-bold text-forest-900 mb-3">Strengths</h2>
-      <ul class="space-y-2">
-        {clan.strengths.map((strength) => (
-          <li class="flex items-center gap-3 text-earth-700">
-            <span class="w-2 h-2 rounded-full bg-gold-500 shrink-0" />
-            {strength}
-          </li>
-        ))}
-      </ul>
-    </section>
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 py-12">
+      <div class="bg-white rounded-[14px] p-6 shadow-md">
+        <h3 class="text-lg font-heading font-bold text-forest-900 mb-2">About</h3>
+        <p class="text-sm text-earth-700 leading-relaxed">{clan.description}</p>
+      </div>
+      <div class="bg-white rounded-[14px] p-6 shadow-md">
+        <h3 class="text-lg font-heading font-bold text-forest-900 mb-2">Territory</h3>
+        <p class="text-sm text-earth-700 leading-relaxed">{clan.territory}</p>
+      </div>
+    </div>
 
     {clanCharacters.length > 0 && (
-      <section class="mb-10">
-        <h2 class="text-2xl font-heading font-bold text-forest-900 mb-6">Notable Cats</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <section class="pb-16">
+        <h2 class="text-[28px] font-heading font-bold text-forest-900 mb-6 text-center">Notable Cats</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {clanCharacters.map((character) => (
             <CharacterCard character={character} clanColor={clan.color} />
           ))}
@@ -85,7 +61,7 @@ const headerGradient = headerColors[clan.color] ?? "from-forest-600 to-forest-80
       </section>
     )}
 
-    <section>
+    <section class="pb-16">
       <h2 class="text-2xl font-heading font-bold text-forest-900 mb-4">Other Clans</h2>
       <div class="flex flex-wrap gap-3">
         {otherClans.map((c) => (

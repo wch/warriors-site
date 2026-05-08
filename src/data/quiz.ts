@@ -115,6 +115,32 @@ export const quizQuestions: QuizQuestion[] = [
   },
 ];
 
+export const namePrefixes: Record<string, string[]> = {
+  universal: [
+    "Flame", "Ember", "Bramble", "Fern", "Thistle", "Hazel", "Birch", "Briar",
+    "Dusk", "Dawn", "Mist", "Rowan", "Frost", "Spark", "Holly", "Ivy",
+    "Robin", "Heather", "Sorrel", "Stone", "Patch", "Ash",
+  ],
+  thunderclan: ["Lion", "Tiger", "Oak", "Squirrel", "Sandy", "Cinder", "Russet"],
+  shadowclan: ["Raven", "Crow", "Pine", "Tawny", "Russet", "Owl", "Night"],
+  riverclan: ["Reed", "Mossy", "Silver", "Pebble", "Willow", "Otter", "Minnow"],
+  windclan: ["Swift", "Breeze", "Whisker", "Heath", "Gorse", "Tall", "Rabbit"],
+  skyclan: ["Cloud", "Sky", "Hawk", "Falcon", "Leaf", "Cherry", "Sparrow"],
+};
+
+export const nameSuffixes: string[] = [
+  "heart", "pelt", "claw", "fur", "tail", "stripe", "whisker",
+  "leap", "fang", "wing", "shine", "fall", "watcher", "song",
+  "leaf", "stream", "stalker", "flight",
+];
+
+export function generateWarriorName(clanSlug: string): string {
+  const pool = [...namePrefixes.universal, ...(namePrefixes[clanSlug] || [])];
+  const prefix = pool[Math.floor(Math.random() * pool.length)];
+  const suffix = nameSuffixes[Math.floor(Math.random() * nameSuffixes.length)];
+  return prefix + suffix;
+}
+
 export const quizResults: QuizResult[] = [
   {
     clan: "thunderclan",

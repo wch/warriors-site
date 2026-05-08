@@ -1,37 +1,222 @@
 ---
 import { url } from "../../lib/utils";
+
+const fireflies = Array.from({ length: 18 }).map((_, i) => ({
+  left: `${(i * 53) % 100}%`,
+  top: `${8 + ((i * 37) % 60)}%`,
+  width: `${2 + (i % 3)}px`,
+  height: `${2 + (i % 3)}px`,
+  animationDuration: `${6 + (i % 5) * 1.2}s`,
+  animationDelay: `${(i * 0.6) % 7}s`,
+}));
 ---
 
-<section class="relative overflow-hidden bg-forest-900 text-forest-50">
-  <div class="absolute inset-0 bg-gradient-to-br from-forest-950/90 via-forest-900/80 to-forest-800/70"></div>
-  <div class="absolute inset-0 opacity-20">
-    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--color-forest-600)_0%,_transparent_70%)]"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-forest-950 to-transparent"></div>
+<section class="hero">
+  <!-- Parchment grain -->
+  <svg class="hero-grain" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" /></filter>
+    <rect width="100%" height="100%" filter="url(#grain)" />
+  </svg>
+
+  <!-- StarClan firefly field -->
+  <div class="absolute inset-0 pointer-events-none z-[1] overflow-hidden" aria-hidden="true">
+    {fireflies.map((f) => (
+      <span
+        class="firefly"
+        style={`left:${f.left};top:${f.top};width:${f.width};height:${f.height};animation-duration:${f.animationDuration};animation-delay:${f.animationDelay}`}
+      />
+    ))}
   </div>
 
-  <div class="relative max-w-6xl mx-auto px-4 py-24 md:py-36 text-center">
+  <!-- Forest silhouette -->
+  <svg class="hero-forest" viewBox="0 0 1200 240" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="oklch(0.18 0.05 145)" opacity="0.85" d="M0,160 L60,140 L120,150 L180,120 L240,135 L300,110 L360,130 L420,115 L480,140 L540,118 L600,135 L660,120 L720,140 L780,115 L840,130 L900,118 L960,138 L1020,120 L1080,135 L1140,115 L1200,130 L1200,240 L0,240 Z" />
+    <g fill="oklch(0.14 0.05 145)">
+      <polygon points="-1,240 19,160 39,240" />
+      <polygon points="89,240 109,143 129,240" />
+      <polygon points="179,240 199,163 219,240" />
+      <polygon points="269,240 289,150 309,240" />
+      <polygon points="359,240 379,167 399,240" />
+      <polygon points="449,240 469,153 489,240" />
+      <polygon points="539,240 559,170 579,240" />
+      <polygon points="629,240 649,147 669,240" />
+      <polygon points="719,240 739,163 759,240" />
+      <polygon points="809,240 829,157 849,240" />
+      <polygon points="899,240 919,173 939,240" />
+      <polygon points="989,240 1009,150 1029,240" />
+      <polygon points="1079,240 1099,160 1119,240" />
+      <polygon points="1169,240 1189,147 1209,240" />
+    </g>
+    <g fill="oklch(0.10 0.04 145)">
+      <polygon points="30,240 60,110 90,240" />
+      <polygon points="24,240 60,148 96,240" opacity="0.7" />
+      <polygon points="175,240 205,87 235,240" />
+      <polygon points="181,240 205,125 229,240" opacity="0.7" />
+      <polygon points="320,240 350,100 380,240" />
+      <polygon points="326,240 350,135 374,240" opacity="0.7" />
+      <polygon points="465,240 495,72 525,240" />
+      <polygon points="471,240 495,112 519,240" opacity="0.7" />
+      <polygon points="610,240 640,95 670,240" />
+      <polygon points="616,240 640,130 664,240" opacity="0.7" />
+      <polygon points="755,240 785,80 815,240" />
+      <polygon points="761,240 785,120 809,240" opacity="0.7" />
+      <polygon points="900,240 930,105 960,240" />
+      <polygon points="906,240 930,138 954,240" opacity="0.7" />
+      <polygon points="1045,240 1075,68 1105,240" />
+      <polygon points="1051,240 1075,110 1099,240" opacity="0.7" />
+      <polygon points="1150,240 1180,90 1210,240" />
+      <polygon points="1156,240 1180,128 1204,240" opacity="0.7" />
+    </g>
+  </svg>
+
+  <!-- Bottom fade -->
+  <div class="absolute left-0 right-0 bottom-0 h-32 bg-gradient-to-t from-forest-950 to-transparent z-[2]"></div>
+
+  <!-- Content -->
+  <div class="hero-inner">
     <p class="text-gold-400 text-sm uppercase tracking-[0.3em] mb-4 font-medium">Enter the World of the Clans</p>
-    <h1 class="text-6xl md:text-8xl font-heading font-bold tracking-tight mb-6">
-      <span class="text-gold-400">W</span>arriors
-    </h1>
-    <p class="text-lg md:text-xl text-forest-200 max-w-2xl mx-auto mb-10 leading-relaxed">
+
+    <!-- Paw-print rule -->
+    <div class="hero-rule">
+      <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+        <ellipse cx="6" cy="9" rx="2.2" ry="2.8"/>
+        <ellipse cx="10" cy="6" rx="2" ry="2.6"/>
+        <ellipse cx="14" cy="6" rx="2" ry="2.6"/>
+        <ellipse cx="18" cy="9" rx="2.2" ry="2.8"/>
+        <path d="M6 16 C6 12, 18 12, 18 16 C18 19, 14 21, 12 21 C10 21, 6 19, 6 16 Z"/>
+      </svg>
+    </div>
+
+    <h1 class="hero-title"><span class="hero-w">W</span>arriors</h1>
+
+    <p class="hero-lede">
       Deep in the forest, four Clans of wild cats have lived for generations,
       following the warrior code and protecting their territories.
       Their epic stories of courage, loyalty, and adventure await you.
     </p>
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a
-        href={url("/books")}
-        class="inline-flex items-center justify-center px-8 py-3 bg-gold-500 text-forest-950 font-bold rounded-lg hover:bg-gold-400 transition-colors text-sm"
-      >
+
+    <div class="flex gap-4 justify-center flex-wrap">
+      <a href={url("/books")} class="inline-flex items-center gap-2 text-sm font-bold px-8 py-3 bg-gold-500 text-forest-950 rounded-lg hover:bg-gold-400 transition-all hover:-translate-y-0.5">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
         Explore the Books
       </a>
-      <a
-        href={url("/quiz")}
-        class="inline-flex items-center justify-center px-8 py-3 border-2 border-forest-300 text-forest-100 font-bold rounded-lg hover:bg-forest-800 transition-colors text-sm"
-      >
+      <a href={url("/quiz")} class="inline-flex items-center gap-2 text-sm font-bold px-8 py-3 border-2 border-forest-300 text-forest-100 rounded-lg hover:bg-forest-800 transition-all hover:-translate-y-0.5">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
         Find Your Clan
       </a>
     </div>
   </div>
 </section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-forest-900);
+    color: var(--color-forest-50);
+    padding: 96px 16px 144px;
+    text-align: center;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+      oklch(0.14 0.04 145 / 0.9),
+      oklch(0.20 0.06 145 / 0.8) 50%,
+      oklch(0.28 0.08 145 / 0.7));
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.2;
+    background: radial-gradient(ellipse at top, var(--color-forest-600) 0%, transparent 70%);
+  }
+  .hero-grain {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.10;
+    mix-blend-mode: overlay;
+    z-index: 1;
+  }
+  .hero-forest {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 3;
+    display: block;
+  }
+  .firefly {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--color-gold-400);
+    box-shadow: 0 0 8px 2px var(--color-gold-400),
+                0 0 14px 4px oklch(0.78 0.16 80 / 0.5);
+    opacity: 0;
+    animation: fireflyDrift linear infinite;
+  }
+  .hero-inner {
+    position: relative;
+    max-width: 768px;
+    margin: 0 auto;
+    z-index: 4;
+  }
+  .hero-rule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 0 24px;
+    color: var(--color-gold-400);
+  }
+  .hero-rule::before,
+  .hero-rule::after {
+    content: "";
+    flex: 0 0 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-gold-500), transparent);
+  }
+  .hero-title {
+    font-family: "Cinzel", Georgia, serif;
+    font-weight: 700;
+    font-size: 88px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin: 0 0 24px;
+    text-shadow: 0 2px 24px oklch(0 0 0 / 0.5);
+  }
+  @media (max-width: 640px) {
+    .hero-title { font-size: 60px; }
+  }
+  .hero-w {
+    color: var(--color-gold-400);
+    font-size: 1.15em;
+    line-height: 0;
+    text-shadow: 0 0 30px oklch(0.78 0.16 80 / 0.5);
+  }
+  .hero-lede {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--color-forest-200);
+    max-width: 540px;
+    margin: 0 auto 40px;
+    text-align: left;
+  }
+  .hero-lede::first-letter {
+    font-family: "Cinzel", Georgia, serif;
+    font-weight: 700;
+    float: left;
+    font-size: 64px;
+    line-height: 0.9;
+    color: var(--color-gold-400);
+    margin: 6px 10px 0 0;
+    text-shadow: 0 2px 12px oklch(0.78 0.16 80 / 0.5);
+  }
+</style>

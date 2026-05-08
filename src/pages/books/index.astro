@@ -5,24 +5,18 @@ import { seriesArcs, getBooksByArc } from "../../data/books";
 ---
 
 <BaseLayout title="Books" description="Explore all 36 books across six epic Warriors series arcs.">
-  <div class="max-w-6xl mx-auto px-4 py-12">
-    <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-heading font-bold text-forest-900 mb-4">
-        The Warriors Series
-      </h1>
-      <p class="text-earth-600 max-w-2xl mx-auto text-lg">
-        Six epic story arcs, 36 books, and countless adventures. Follow generations of warrior cats
-        as they fight for their Clans, uncover ancient prophecies, and face the greatest threats
-        the forest has ever known.
-      </p>
-    </div>
+  <div class="bg-forest-900 text-forest-50 py-14 px-4 text-center">
+    <h1 class="text-5xl font-heading font-bold mb-3">The Books</h1>
+    <p class="text-base text-forest-200 max-w-[540px] mx-auto leading-relaxed">
+      Every book in the Warriors saga, organized by series arc.
+    </p>
+  </div>
 
-    <div class="space-y-16">
-      {seriesArcs
-        .sort((a, b) => a.order - b.order)
-        .map((arc) => (
-          <SeriesArcSection arc={arc} books={getBooksByArc(arc.id)} />
-        ))}
-    </div>
+  <div class="max-w-6xl mx-auto px-4">
+    {seriesArcs
+      .sort((a, b) => a.order - b.order)
+      .map((arc) => (
+        <SeriesArcSection arc={arc} books={getBooksByArc(arc.id)} />
+      ))}
   </div>
 </BaseLayout>

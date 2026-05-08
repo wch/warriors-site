@@ -1,0 +1,17 @@
+export const warriorCode: string[] = [
+  "Defend your Clan, even with your life. You may have friendships with cats from other Clans, but your loyalty must remain to your Clan.",
+  "Do not hunt or trespass on another Clan's territory.",
+  "Elders, queens, and kits must be fed before apprentices and warriors.",
+  "Prey is killed only to be eaten. Give thanks to StarClan for its life.",
+  "A kit must be at least six moons old to become an apprentice.",
+  "Newly appointed warriors will keep a silent vigil for one night after receiving their warrior name.",
+  "A cat cannot be made deputy without first having mentored at least one apprentice.",
+  "The deputy will become Clan leader when the leader dies or retires.",
+  "After a leader's death or retirement, the new deputy must be chosen before moonhigh.",
+  "A Gathering of all four Clans is held at the full moon during a truce that lasts for the night. There shall be no fighting among Clans at this time.",
+  "Boundaries must be checked and marked daily. Challenge all trespassing cats.",
+  "No warrior may neglect a kit in pain or in danger, even if that kit is from a different Clan.",
+  "The word of the Clan leader is the warrior code.",
+  "An honorable warrior does not need to kill other cats to win battles, unless they are outside the warrior code or it is necessary for self-defense.",
+  "A warrior rejects the soft life of a kittypet.",
+];

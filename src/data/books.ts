@@ -6,11 +6,14 @@ export type SeriesArcId =
   | "a-vision-of-shadows"
   | "the-broken-code";
 
+export type ArcGradient = "thunder" | "forest" | "sky" | "shadow" | "earth" | "river";
+
 export interface SeriesArc {
   id: SeriesArcId;
   name: string;
   description: string;
   order: number;
+  gradient: ArcGradient;
 }
 
 export interface Book {
@@ -35,6 +38,7 @@ export const seriesArcs: SeriesArc[] = [
     description:
       "A house cat named Rusty joins ThunderClan and becomes Firepaw, then Fireheart, eventually rising to become one of the greatest leaders the forest has ever known.",
     order: 1,
+    gradient: "thunder",
   },
   {
     id: "the-new-prophecy",
@@ -42,6 +46,7 @@ export const seriesArcs: SeriesArc[] = [
     description:
       "When the forest territories face destruction, cats from all four Clans must join together on a perilous journey to find a new home.",
     order: 2,
+    gradient: "forest",
   },
   {
     id: "power-of-three",
@@ -49,6 +54,7 @@ export const seriesArcs: SeriesArc[] = [
     description:
       "Three ThunderClan cats—Jayfeather, Lionblaze, and Hollyleaf—discover a prophecy that they hold the power of the stars in their paws.",
     order: 3,
+    gradient: "sky",
   },
   {
     id: "omen-of-the-stars",
@@ -56,6 +62,7 @@ export const seriesArcs: SeriesArc[] = [
     description:
       "The Dark Forest rises to wage war on the living Clans, and three cats must fulfill an ancient prophecy to save them all.",
     order: 4,
+    gradient: "shadow",
   },
   {
     id: "a-vision-of-shadows",
@@ -63,6 +70,7 @@ export const seriesArcs: SeriesArc[] = [
     description:
       "Alderpaw receives a mysterious vision from StarClan that sends him on a quest, leading to the return of the long-lost SkyClan.",
     order: 5,
+    gradient: "earth",
   },
   {
     id: "the-broken-code",
@@ -70,6 +78,7 @@ export const seriesArcs: SeriesArc[] = [
     description:
       "StarClan has gone silent, Bramblestar is acting strangely, and three young cats must uncover a darkness that threatens to shatter the warrior code forever.",
     order: 6,
+    gradient: "river",
   },
 ];
 

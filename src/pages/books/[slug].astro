@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { books, seriesArcs, getBooksByArc, getArcForBook, getCoverUrl } from "../../data/books";
-import type { Book } from "../../data/books";
+import type { Book, ArcGradient } from "../../data/books";
 import { url } from "../../lib/utils";
 
 export function getStaticPaths() {
@@ -22,90 +22,62 @@ const bookIndex = arcBooks.findIndex((b) => b.slug === book.slug);
 const prevBook = bookIndex > 0 ? arcBooks[bookIndex - 1] : null;
 const nextBook = bookIndex < arcBooks.length - 1 ? arcBooks[bookIndex + 1] : null;
 const otherBooks = arcBooks.filter((b) => b.slug !== book.slug);
-
-const arcGradients: Record<string, string> = {
-  "the-prophecies-begin": "from-amber-700 to-amber-900",
-  "the-new-prophecy": "from-forest-600 to-forest-800",
-  "power-of-three": "from-sky-600 to-sky-800",
-  "omen-of-the-stars": "from-slate-600 to-slate-800",
-  "a-vision-of-shadows": "from-earth-500 to-earth-700",
-  "the-broken-code": "from-blue-700 to-blue-900",
-};
-const gradient = arcGradients[book.seriesArc] ?? "from-forest-600 to-forest-800";
 const coverUrl = getCoverUrl(book.isbn, "L");
+
+const arcGradients: Record<ArcGradient, string> = {
+  thunder: "linear-gradient(135deg, oklch(0.45 0.15 60), oklch(0.30 0.13 50))",
+  forest: "linear-gradient(135deg, oklch(0.42 0.12 145), oklch(0.28 0.08 145))",
+  sky: "linear-gradient(135deg, oklch(0.55 0.16 230), oklch(0.30 0.14 230))",
+  shadow: "linear-gradient(135deg, oklch(0.55 0.04 250), oklch(0.30 0.04 250))",
+  earth: "linear-gradient(135deg, oklch(0.50 0.10 45), oklch(0.35 0.07 45))",
+  river: "linear-gradient(135deg, oklch(0.45 0.18 250), oklch(0.25 0.14 250))",
+};
 ---
 
 <BaseLayout title={book.title} description={book.description}>
-  <div class={`bg-gradient-to-br ${gradient} text-white`}>
-    <div class="max-w-4xl mx-auto px-4 py-12">
-      <nav class="text-sm mb-6 opacity-80">
-        <a href={url("/")} class="hover:underline">Home</a>
-        <span class="mx-2">/</span>
-        <a href={url("/books")} class="hover:underline">Books</a>
-        <span class="mx-2">/</span>
-        <a href={url(`/books#${arc.id}`)} class="hover:underline">{arc.name}</a>
-        <span class="mx-2">/</span>
-        <span>{book.title}</span>
-      </nav>
-      <div class="flex flex-col sm:flex-row gap-8 items-start">
-        <div class="shrink-0">
-          <img
-            src={coverUrl}
-            alt={`Cover of ${book.title}`}
-            class="w-48 h-72 object-cover rounded-xl shadow-2xl"
-          />
-        </div>
-        <div class="flex-1">
-          <div class="flex flex-wrap items-center gap-3 mb-4">
-            <span class="inline-block text-xs font-medium bg-white/20 px-3 py-1 rounded-full">
-              {arc.name}
-            </span>
-            <span class="inline-block text-xs font-medium bg-white/20 px-3 py-1 rounded-full">
-              Book {book.bookNumber} of 6
-            </span>
-          </div>
-          <h1 class="text-4xl md:text-5xl font-heading font-bold mb-4">{book.title}</h1>
-          <p class="text-white/90 leading-relaxed">{book.description}</p>
-        </div>
-      </div>
-    </div>
+  <div class="text-white py-12 px-4 text-center" style={`background: ${arcGradients[arc.gradient]}`}>
+    <span class="text-xs uppercase tracking-wider opacity-80">Arc {arc.order} &middot; {arc.name}</span>
+    <h1 class="text-4xl md:text-[56px] font-heading font-bold mt-2 leading-none tracking-tight">{book.title}</h1>
   </div>
 
-  <div class="max-w-4xl mx-auto px-4 py-10">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
-      <div class="bg-white rounded-xl p-5 shadow-sm">
-        <dt class="text-xs uppercase tracking-wider text-earth-500 mb-1">Published</dt>
-        <dd class="text-forest-900 font-heading font-bold">{book.year}</dd>
-      </div>
-      <div class="bg-white rounded-xl p-5 shadow-sm">
-        <dt class="text-xs uppercase tracking-wider text-earth-500 mb-1">Protagonist</dt>
-        <dd class="text-forest-900 font-heading font-bold">{book.protagonist}</dd>
-      </div>
-      <div class="bg-white rounded-xl p-5 shadow-sm">
-        <dt class="text-xs uppercase tracking-wider text-earth-500 mb-1">Series Arc</dt>
-        <dd class="text-forest-900 font-heading font-bold">{arc.name}</dd>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="flex gap-8 flex-wrap items-start">
+      <img
+        src={coverUrl}
+        alt={`Cover of ${book.title}`}
+        class="w-[200px] rounded-lg shrink-0"
+        style="box-shadow: 0 12px 24px rgb(0 0 0 / 0.15)"
+      />
+      <div class="flex-1 min-w-[280px]">
+        <span class="inline-block text-xs font-medium bg-earth-100 text-earth-700 px-2.5 py-1 rounded-full mb-2">
+          {arc.name}
+        </span>
+        <p class="text-base text-earth-700 leading-[1.7] mb-4">{book.description}</p>
+        <div class="grid grid-cols-3 gap-6 text-sm mb-6">
+          <div>
+            <div class="text-earth-500 text-xs uppercase tracking-wider">Year</div>
+            <div class="font-semibold text-forest-900 mt-1">{book.year}</div>
+          </div>
+          <div>
+            <div class="text-earth-500 text-xs uppercase tracking-wider">Book #</div>
+            <div class="font-semibold text-forest-900 mt-1">{book.bookNumber}</div>
+          </div>
+          <div>
+            <div class="text-earth-500 text-xs uppercase tracking-wider">Protagonist</div>
+            <div class="font-semibold text-forest-900 mt-1">{book.protagonist}</div>
+          </div>
+        </div>
+        <a
+          href={url("/books")}
+          class="inline-flex items-center gap-2 text-sm font-bold px-6 py-2.5 bg-forest-700 text-white rounded-lg hover:bg-forest-800 transition-colors"
+        >
+          &larr; Back to all books
+        </a>
       </div>
     </div>
 
-    <nav class="flex items-center justify-between border-t border-b border-earth-200 py-4 mb-10">
-      {prevBook ? (
-        <a href={url(`/books/${prevBook.slug}`)} class="text-sm text-forest-700 hover:text-forest-900 transition-colors">
-          &larr; {prevBook.title}
-        </a>
-      ) : (
-        <span />
-      )}
-      {nextBook ? (
-        <a href={url(`/books/${nextBook.slug}`)} class="text-sm text-forest-700 hover:text-forest-900 transition-colors">
-          {nextBook.title} &rarr;
-        </a>
-      ) : (
-        <span />
-      )}
-    </nav>
-
     {otherBooks.length > 0 && (
-      <section>
+      <section class="mt-12 pt-8 border-t border-earth-200">
         <h2 class="text-2xl font-heading font-bold text-forest-900 mb-6">
           More from {arc.name}
         </h2>

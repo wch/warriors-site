@@ -1,0 +1,131 @@
+---
+import { warriorCode } from "../../data/warrior-code";
+---
+
+<section class="code-section">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="code-scroll">
+      <div class="text-center relative z-[1]">
+        <span class="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.25em] uppercase mb-3" style="color: oklch(0.50 0.12 40)">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 21h12a2 2 0 0 0 2-2v-2H10v2a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v3h4"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/></svg>
+          Ancient Lore
+        </span>
+        <h2 class="code-title">The Warrior Code</h2>
+        <p class="font-heading italic text-[15px] leading-relaxed text-earth-700 mx-auto max-w-[520px] mb-8">
+          The laws every warrior swears to follow, passed down from StarClan since the Clans began.
+        </p>
+      </div>
+      <ol class="code-list">
+        {warriorCode.slice(0, 8).map((line, i) => (
+          <li>
+            <span class="code-num">{i + 1}</span>
+            <span class="code-text">{line}</span>
+          </li>
+        ))}
+      </ol>
+      <div class="code-foot">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><ellipse cx="6" cy="9" rx="2.2" ry="2.8"/><ellipse cx="10" cy="6" rx="2" ry="2.6"/><ellipse cx="14" cy="6" rx="2" ry="2.6"/><ellipse cx="18" cy="9" rx="2.2" ry="2.8"/><path d="M6 16 C6 12, 18 12, 18 16 C18 19, 14 21, 12 21 C10 21, 6 19, 6 16 Z"/></svg>
+        <span>{warriorCode.length} laws guide every cat</span>
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><ellipse cx="6" cy="9" rx="2.2" ry="2.8"/><ellipse cx="10" cy="6" rx="2" ry="2.6"/><ellipse cx="14" cy="6" rx="2" ry="2.6"/><ellipse cx="18" cy="9" rx="2.2" ry="2.8"/><path d="M6 16 C6 12, 18 12, 18 16 C18 19, 14 21, 12 21 C10 21, 6 19, 6 16 Z"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .code-section {
+    padding: 64px 16px;
+    background: linear-gradient(180deg, var(--color-earth-50) 0%, var(--color-earth-100) 100%);
+    position: relative;
+  }
+  .code-scroll {
+    max-width: 760px;
+    margin: 0 auto;
+    background: radial-gradient(ellipse at top, oklch(0.96 0.04 75) 0%, oklch(0.93 0.05 70) 60%, oklch(0.90 0.06 65) 100%);
+    border: 1px solid oklch(0.82 0.06 60);
+    border-radius: 12px;
+    padding: 48px 56px;
+    position: relative;
+    box-shadow:
+      0 1px 0 #fff inset,
+      0 0 0 1px oklch(0.96 0.04 75) inset,
+      0 12px 32px -12px rgb(0 0 0 / 0.25),
+      0 4px 12px -4px rgb(0 0 0 / 0.15);
+  }
+  .code-scroll::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 12px;
+    background-image:
+      radial-gradient(circle at 12% 20%, oklch(0.75 0.08 45 / 0.18) 0 3px, transparent 4px),
+      radial-gradient(circle at 78% 36%, oklch(0.72 0.10 40 / 0.22) 0 4px, transparent 5px),
+      radial-gradient(circle at 30% 70%, oklch(0.78 0.07 50 / 0.18) 0 2px, transparent 3px),
+      radial-gradient(circle at 88% 82%, oklch(0.70 0.09 38 / 0.22) 0 3px, transparent 4px);
+    background-size: 100% 100%;
+    mix-blend-mode: multiply;
+  }
+  .code-scroll::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 12px;
+    box-shadow: 0 0 36px 4px oklch(0.55 0.10 40 / 0.20) inset;
+  }
+  .code-title {
+    font-family: "Cinzel", Georgia, serif;
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: 0.04em;
+    color: oklch(0.30 0.10 40);
+    margin: 0 0 12px;
+  }
+  .code-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .code-list li {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+  .code-num {
+    font-family: "Cinzel", Georgia, serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: oklch(0.45 0.16 40);
+    text-align: center;
+    line-height: 1.1;
+    border-bottom: 1px solid oklch(0.65 0.10 40 / 0.4);
+    padding-bottom: 4px;
+  }
+  .code-text {
+    font: 15px/1.65 var(--font-heading);
+    color: oklch(0.25 0.06 40);
+  }
+  .code-foot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px dashed oklch(0.65 0.10 40 / 0.4);
+    font: italic 13px/1 var(--font-heading);
+    color: oklch(0.45 0.10 40);
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 600px) {
+    .code-scroll { padding: 32px 24px; }
+    .code-title { font-size: 28px; }
+  }
+</style>

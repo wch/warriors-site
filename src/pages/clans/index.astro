@@ -6,30 +6,20 @@ import { url } from "../../lib/utils";
 ---
 
 <BaseLayout title="The Five Clans" description="Meet the five Clans of warrior cats — ThunderClan, ShadowClan, RiverClan, WindClan, and SkyClan.">
-  <div class="max-w-6xl mx-auto px-4 py-12">
-    <div class="text-center mb-12">
-      <h1 class="text-4xl md:text-5xl font-heading font-bold text-forest-900 mb-4">
-        The Five Clans
-      </h1>
-      <p class="text-earth-600 max-w-2xl mx-auto text-lg">
-        Deep in the forest and by the lake, five Clans of wild cats live by the warrior code.
-        Each Clan has its own territory, traditions, and way of life. Which one calls to you?
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {clans.map((clan) => (
-        <ClanCard clan={clan} />
-      ))}
-    </div>
-
-    <div class="mt-12 text-center">
-      <a
-        href={url("/quiz")}
-        class="inline-flex items-center justify-center px-8 py-3 bg-gold-500 text-forest-950 font-bold rounded-lg hover:bg-gold-400 transition-colors text-sm"
-      >
-        Take the Quiz — Find Your Clan!
-      </a>
-    </div>
+  <div class="bg-forest-900 text-forest-50 py-14 px-4 text-center">
+    <h1 class="text-5xl font-heading font-bold mb-3">The Five Clans</h1>
+    <p class="text-base text-forest-200 max-w-[540px] mx-auto leading-relaxed">
+      Each Clan has its own territory, traditions, and way of life. Discover where you belong.
+    </p>
   </div>
+
+  <section class="py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {clans.map((clan) => (
+          <ClanCard clan={clan} />
+        ))}
+      </div>
+    </div>
+  </section>
 </BaseLayout>

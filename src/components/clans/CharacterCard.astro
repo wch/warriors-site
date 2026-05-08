@@ -6,39 +6,38 @@ interface Props {
   clanColor?: string;
 }
 
-const { character, clanColor = "forest" } = Astro.props;
+const { character, clanColor = "thunder" } = Astro.props;
 
 const avatarColors: Record<string, string> = {
-  amber: "bg-amber-200 text-amber-800",
-  slate: "bg-slate-200 text-slate-800",
-  blue: "bg-blue-200 text-blue-800",
-  stone: "bg-stone-200 text-stone-700",
-  sky: "bg-sky-200 text-sky-800",
-  forest: "bg-forest-200 text-forest-800",
+  thunder: "bg-clan-thunder-soft text-[#92400e]",
+  shadow: "bg-clan-shadow-soft text-[#1e293b]",
+  river: "bg-clan-river-soft text-[#1e3a8a]",
+  wind: "bg-clan-wind-soft text-[#44403c]",
+  sky: "bg-clan-sky-soft text-[#075985]",
 };
-const avatar = avatarColors[clanColor] ?? avatarColors.forest;
+const avatar = avatarColors[clanColor] ?? avatarColors.thunder;
 
 const roleBadgeColors: Record<string, string> = {
   Leader: "bg-gold-500 text-forest-950",
   Deputy: "bg-earth-300 text-earth-800",
   "Medicine Cat": "bg-forest-200 text-forest-800",
   Warrior: "bg-earth-100 text-earth-700",
-  Apprentice: "bg-sky-100 text-sky-800",
-  Elder: "bg-stone-100 text-stone-700",
+  Apprentice: "bg-clan-sky-soft text-[#075985]",
+  Elder: "bg-clan-wind-soft text-[#44403c]",
 };
 const roleBadge = roleBadgeColors[character.role] ?? roleBadgeColors.Warrior;
 
 const initials = character.name.slice(0, 2);
 ---
 
-<div class="bg-white rounded-xl shadow-md p-5">
+<div class="bg-white rounded-xl shadow-sm p-5">
   <div class="flex items-start gap-4">
     <div class:list={["w-12 h-12 rounded-full flex items-center justify-center font-heading font-bold text-sm shrink-0", avatar]}>
       {initials}
     </div>
     <div class="min-w-0">
       <h3 class="text-lg font-heading font-bold text-forest-900">{character.name}</h3>
-      <span class:list={["inline-block text-xs font-medium px-2 py-0.5 rounded-full mt-1", roleBadge]}>
+      <span class:list={["inline-block text-[11px] font-medium px-2 py-0.5 rounded-full mt-1", roleBadge]}>
         {character.role}
       </span>
     </div>

@@ -28,7 +28,19 @@
   --color-gold-500: oklch(0.72 0.16 80);
   --color-gold-600: oklch(0.62 0.15 75);
 
+  --color-clan-thunder: oklch(0.71 0.16 60);
+  --color-clan-thunder-soft: oklch(0.96 0.04 90);
+  --color-clan-shadow: oklch(0.55 0.04 250);
+  --color-clan-shadow-soft: oklch(0.96 0.005 250);
+  --color-clan-river: oklch(0.62 0.18 250);
+  --color-clan-river-soft: oklch(0.96 0.03 250);
+  --color-clan-wind: oklch(0.62 0.02 80);
+  --color-clan-wind-soft: oklch(0.96 0.005 80);
+  --color-clan-sky: oklch(0.68 0.14 230);
+  --color-clan-sky-soft: oklch(0.96 0.03 230);
+
   --font-heading: "Georgia", "Cambria", "Times New Roman", serif;
+  --font-display: "Cinzel", "Georgia", serif;
   --font-body: "system-ui", "-apple-system", "Segoe UI", "Roboto", sans-serif;
 }
 
@@ -60,8 +72,41 @@
     font-family: var(--font-body);
     background-color: var(--background);
     color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
   }
+}
+
+@keyframes fireflyDrift {
+  0%   { opacity: 0; transform: translate(0, 0) scale(0.6); }
+  20%  { opacity: 0.95; }
+  50%  { transform: translate(20px, -30px) scale(1); opacity: 1; }
+  80%  { opacity: 0.95; }
+  100% { opacity: 0; transform: translate(40px, -60px) scale(0.6); }
+}
+
+@keyframes pawPulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
+  50%      { transform: scale(1.15); filter: drop-shadow(0 0 6px oklch(0.78 0.16 80 / 0.7)); }
+}
+
+@keyframes burstIn {
+  from { opacity: 0; transform: scale(0.4); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes burstSpin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes symbolPop {
+  from { opacity: 0; transform: scale(0.2); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes nameReveal {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }

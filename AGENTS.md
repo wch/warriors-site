@@ -31,11 +31,11 @@ src/
 ├── components/
 │   ├── ui/          # shadcn/ui components (button, card, badge, etc.)
 │   ├── layout/      # Header, Footer (Astro)
-│   ├── home/        # Hero, FeaturedBooks, SeriesOverview (Astro)
+│   ├── home/        # Hero, FeaturedBooks, SeriesOverview, WarriorCodeSection (Astro)
 │   ├── books/       # BookCard, SeriesArcSection (Astro)
 │   ├── clans/       # ClanCard, CharacterCard (Astro)
 │   └── quiz/        # ClanQuiz.tsx (React island)
-├── data/            # TypeScript data files (books, clans, characters, quiz)
+├── data/            # TypeScript data files (books, clans, characters, quiz, warrior-code)
 ├── layouts/         # BaseLayout.astro
 ├── pages/           # File-based routing
 │   ├── books/       # Catalog + [slug] detail pages
@@ -49,10 +49,12 @@ src/
 
 ## Styling
 
-- Custom color palette defined in `src/styles/global.css` via `@theme`: `forest-*` (greens), `earth-*` (browns), `gold-*` (amber accents).
+- Custom OKLCH color palette defined in `src/styles/global.css` via `@theme`: `forest-*` (greens), `earth-*` (browns), `gold-*` (amber accents), `clan-*` (per-clan accents with `-soft` variants).
 - shadcn CSS variables (`--primary`, `--card`, etc.) are mapped to the custom palette in `:root`.
-- Headings use Georgia serif; body uses system font stack.
-- Clan-specific accent colors use Tailwind's built-in palette (amber, slate, blue, stone, sky) applied via static class names in component lookup tables — not dynamic class construction.
+- Display font: Cinzel (Google Fonts) for wordmark and hero title (`font-display`). Headings: Georgia serif. Body: system font stack.
+- Clan-specific accent colors defined as `clan-thunder`, `clan-shadow`, `clan-river`, `clan-wind`, `clan-sky` (each with a `-soft` tint variant) in `@theme`. Clan gradients use inline styles with OKLCH values in component lookup tables.
+- Series arcs have a `gradient` field (`thunder`/`forest`/`sky`/`shadow`/`earth`/`river`) used for book card spines and page hero backgrounds.
+- Design-specific animations (`fireflyDrift`, `pawPulse`, `burstIn`, `burstSpin`, `symbolPop`, `nameReveal`) defined as `@keyframes` in global.css.
 
 ## Adding shadcn Components
 

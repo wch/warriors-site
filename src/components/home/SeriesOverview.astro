@@ -1,34 +1,37 @@
 ---
 import { seriesArcs } from "../../data/books";
+import type { ArcGradient } from "../../data/books";
 import { url } from "../../lib/utils";
 
-const arcColors = [
-  "from-amber-600 to-amber-800",
-  "from-forest-600 to-forest-800",
-  "from-sky-600 to-sky-800",
-  "from-slate-600 to-slate-800",
-  "from-earth-500 to-earth-700",
-  "from-blue-600 to-blue-800",
-];
+const arcGradients: Record<ArcGradient, string> = {
+  thunder: "linear-gradient(135deg, oklch(0.45 0.15 60), oklch(0.30 0.13 50))",
+  forest: "linear-gradient(135deg, oklch(0.42 0.12 145), oklch(0.28 0.08 145))",
+  sky: "linear-gradient(135deg, oklch(0.55 0.16 230), oklch(0.30 0.14 230))",
+  shadow: "linear-gradient(135deg, oklch(0.55 0.04 250), oklch(0.30 0.04 250))",
+  earth: "linear-gradient(135deg, oklch(0.50 0.10 45), oklch(0.35 0.07 45))",
+  river: "linear-gradient(135deg, oklch(0.45 0.18 250), oklch(0.25 0.14 250))",
+};
 ---
 
 <section class="bg-forest-100 py-16">
   <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-3xl md:text-4xl font-heading font-bold text-forest-900 mb-2 text-center">
-      The Series Arcs
-    </h2>
-    <p class="text-earth-600 text-center mb-10 max-w-xl mx-auto">
-      Six epic story arcs spanning generations of warrior cats.
-    </p>
+    <div class="text-center mb-10 max-w-xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-heading font-bold text-forest-900 mb-2">
+        The Series Arcs
+      </h2>
+      <p class="text-earth-600">
+        Six epic story arcs spanning generations of warrior cats.
+      </p>
+    </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {seriesArcs.map((arc, i) => (
+      {seriesArcs.map((arc) => (
         <a
           href={url(`/books#${arc.id}`)}
-          class="group block rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
+          class="arc-tile"
         >
-          <div class={`bg-gradient-to-br ${arcColors[i]} p-6 text-white`}>
+          <div class="arc-banner" style={`background: ${arcGradients[arc.gradient]}`}>
             <span class="text-xs uppercase tracking-wider opacity-80">Arc {arc.order}</span>
-            <h3 class="text-xl font-heading font-bold mt-1 group-hover:text-gold-400 transition-colors">
+            <h3 class="text-[22px] font-heading font-bold mt-1 transition-colors group-hover:text-gold-400">
               {arc.name}
             </h3>
           </div>
@@ -40,3 +43,24 @@ const arcColors = [
     </div>
   </div>
 </section>
+
+<style>
+  .arc-tile {
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.10);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .arc-tile:hover {
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.10), 0 8px 10px -6px rgb(0 0 0 / 0.10);
+    transform: translateY(-4px);
+  }
+  .arc-banner {
+    padding: 24px;
+    color: #fff;
+  }
+  .arc-tile:hover .arc-banner h3 {
+    color: var(--color-gold-400);
+  }
+</style>
