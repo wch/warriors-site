@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ClanQuiz from "../components/quiz/ClanQuiz.tsx";
+---
+
+<BaseLayout title="Which Clan Do You Belong To?" description="Take the Warriors personality quiz and discover which Clan you belong to!">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="text-center mb-10">
+      <h1 class="text-4xl md:text-5xl font-heading font-bold text-forest-900 mb-4">
+        Which Clan Do You Belong To?
+      </h1>
+      <p class="text-earth-600 max-w-xl mx-auto text-lg">
+        Answer these questions to discover which warrior Clan matches your personality.
+        Are you brave like ThunderClan? Swift like WindClan? Find out!
+      </p>
+    </div>
+    <ClanQuiz client:load />
+  </div>
+</BaseLayout>

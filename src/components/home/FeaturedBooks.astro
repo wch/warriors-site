@@ -1,0 +1,22 @@
+---
+import { books, seriesArcs } from "../../data/books";
+import BookCard from "../books/BookCard.astro";
+
+const featuredSlugs = ["into-the-wild", "midnight", "the-sight", "lost-stars"];
+const featuredBooks = featuredSlugs.map((slug) => books.find((b) => b.slug === slug)!);
+---
+
+<section class="max-w-6xl mx-auto px-4 py-16">
+  <h2 class="text-3xl md:text-4xl font-heading font-bold text-forest-900 mb-2 text-center">
+    Featured Books
+  </h2>
+  <p class="text-earth-600 text-center mb-10 max-w-xl mx-auto">
+    Start your journey with these key books from across the Warriors saga.
+  </p>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    {featuredBooks.map((book) => {
+      const arc = seriesArcs.find((a) => a.id === book.seriesArc)!;
+      return <BookCard book={book} arcName={arc.name} />;
+    })}
+  </div>
+</section>

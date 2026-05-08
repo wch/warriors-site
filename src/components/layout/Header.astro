@@ -1,0 +1,63 @@
+---
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/books", label: "Books" },
+  { href: "/clans", label: "Clans" },
+  { href: "/quiz", label: "Find Your Clan" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="bg-forest-900 text-forest-50 sticky top-0 z-50">
+  <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="/" class="text-2xl font-heading font-bold tracking-wide text-gold-400 hover:text-gold-500 transition-colors">
+      Warriors
+    </a>
+
+    <!-- Desktop nav -->
+    <ul class="hidden md:flex items-center gap-6">
+      {navLinks.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            class:list={[
+              "text-sm font-medium transition-colors hover:text-gold-400",
+              currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href))
+                ? "text-gold-400"
+                : "text-forest-200",
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Mobile menu toggle -->
+    <details class="md:hidden relative group">
+      <summary class="list-none cursor-pointer p-2 hover:text-gold-400 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </summary>
+      <ul class="absolute right-0 top-full mt-2 bg-forest-800 rounded-lg shadow-xl py-2 w-48 z-50">
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={[
+                "block px-4 py-2 text-sm transition-colors hover:bg-forest-700 hover:text-gold-400",
+                currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href))
+                  ? "text-gold-400"
+                  : "text-forest-200",
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </details>
+  </nav>
+</header>

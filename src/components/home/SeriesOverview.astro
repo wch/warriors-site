@@ -1,0 +1,41 @@
+---
+import { seriesArcs } from "../../data/books";
+
+const arcColors = [
+  "from-amber-600 to-amber-800",
+  "from-forest-600 to-forest-800",
+  "from-sky-600 to-sky-800",
+  "from-slate-600 to-slate-800",
+  "from-earth-500 to-earth-700",
+  "from-blue-600 to-blue-800",
+];
+---
+
+<section class="bg-forest-100 py-16">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-heading font-bold text-forest-900 mb-2 text-center">
+      The Series Arcs
+    </h2>
+    <p class="text-earth-600 text-center mb-10 max-w-xl mx-auto">
+      Six epic story arcs spanning generations of warrior cats.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {seriesArcs.map((arc, i) => (
+        <a
+          href={`/books#${arc.id}`}
+          class="group block rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow"
+        >
+          <div class={`bg-gradient-to-br ${arcColors[i]} p-6 text-white`}>
+            <span class="text-xs uppercase tracking-wider opacity-80">Arc {arc.order}</span>
+            <h3 class="text-xl font-heading font-bold mt-1 group-hover:text-gold-400 transition-colors">
+              {arc.name}
+            </h3>
+          </div>
+          <div class="bg-white p-4">
+            <p class="text-sm text-earth-700 leading-relaxed">{arc.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

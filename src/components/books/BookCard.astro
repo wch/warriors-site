@@ -1,0 +1,49 @@
+---
+import type { Book } from "../../data/books";
+import { getCoverUrl } from "../../data/books";
+
+interface Props {
+  book: Book;
+  arcName: string;
+}
+
+const { book, arcName } = Astro.props;
+
+const arcGradients: Record<string, string> = {
+  "the-prophecies-begin": "from-amber-700 to-amber-900",
+  "the-new-prophecy": "from-forest-600 to-forest-800",
+  "power-of-three": "from-sky-600 to-sky-800",
+  "omen-of-the-stars": "from-slate-600 to-slate-800",
+  "a-vision-of-shadows": "from-earth-500 to-earth-700",
+  "the-broken-code": "from-blue-700 to-blue-900",
+};
+const gradient = arcGradients[book.seriesArc] ?? "from-forest-600 to-forest-800";
+const coverUrl = getCoverUrl(book.isbn, "M");
+---
+
+<a href={`/books/${book.slug}`} class="group block rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all hover:-translate-y-1 bg-white">
+  <div class={`bg-gradient-to-br ${gradient} relative overflow-hidden`}>
+    <div class="flex items-center justify-center p-4">
+      <img
+        src={coverUrl}
+        alt={`Cover of ${book.title}`}
+        class="w-32 h-48 object-cover rounded-lg shadow-lg group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+      />
+    </div>
+  </div>
+  <div class="p-4">
+    <span class="inline-block text-xs font-medium bg-earth-100 text-earth-700 px-2 py-1 rounded-full mb-2">
+      {arcName}
+    </span>
+    <h3 class="text-base font-heading font-bold leading-tight text-forest-900 group-hover:text-forest-700 transition-colors mb-1">
+      {book.title}
+    </h3>
+    <p class="text-sm text-earth-600 leading-relaxed line-clamp-2">{book.description}</p>
+    <div class="mt-3 flex items-center gap-2 text-xs text-earth-500">
+      <span>{book.year}</span>
+      <span>&middot;</span>
+      <span>{book.protagonist}</span>
+    </div>
+  </div>
+</a>
